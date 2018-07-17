@@ -1,0 +1,60 @@
+//
+//  PrefixHeader.pch
+//  CalendarPlan
+//
+//  Created by lmg on 2018/7/17.
+//  Copyright © 2018年 lmg. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef __OBJC__
+
+
+#import <Masonry.h>
+
+#define PATH_OF_Cache    [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+#define PATH_OF_DOCUMENT    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+#define IDIOM    UI_USER_INTERFACE_IDIOM()
+#define IPAD     UIUserInterfaceIdiomPad
+#define isiPad (IDIOM == IPAD ? YES:NO)
+
+#define LSWIDTH  [[UIScreen mainScreen] bounds].size.width
+#define LSHEIGHT  [[UIScreen mainScreen] bounds].size.height
+
+
+#define WeakSelf(weakSelf)      __weak __typeof(&*self)    weakSelf  = self;
+#define StrongSelf(strongSelf)  __strong __typeof(&*self) strongSelf = weakSelf;
+
+#define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define  CM_TabbarSafeBottomMargin      (kDevice_Is_iPhoneX ? 34.f : 0.f)
+
+
+#define NavBarHeight (CGFloat)(kDevice_Is_iPhoneX ? 84.0 : 64.0)
+#define TabBarHeight (CGFloat)(kDevice_Is_iPhoneX ? 83.0 : 49.0)
+
+#define CUSTOMCOLOR(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+
+#ifdef DEBUG
+
+#define CPLog(...) NSLog(@"%s %d \n %@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+
+#else
+#define CPLog(...)
+
+#endif
+
+
+#endif
+
+#endif /* PrefixHeader_pch */
